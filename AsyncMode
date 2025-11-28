@@ -14,7 +14,7 @@ local Window = Rayfield:CreateWindow({
    DisableBuildWarnings = false, -- Prevents Rayfield from warning when the script has a version mismatch with the interface
 
    ConfigurationSaving = {
-      Enabled = true,
+      Enabled = false,
       FolderName = DurianHub, -- Create a custom folder for your hub/game
       FileName = "RawLinkExecutor"
    },
@@ -57,4 +57,31 @@ local Button = Tab:CreateButton({
    loadstring(game:HttpGetAsync(luacode))()-- The function that takes place when the button is pressed
    end,
 })
-Rayfield:LoadConfiguration()
+local MiscTab = Window:CreateTab("Misc", 4483362458) -- Title, Image
+local Toggle = MiscTab:CreateToggle({
+   Name = "ESP",
+   CurrentValue = false,
+   Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+   loadstring(game:HttpGetAsync("https://gist.githubusercontent.com/DurianBruhRBLX/3c3f2a6399d58bdb77f6ea38a5fb34b0/raw/6722caf6ba5ad97ca9962723523baa37a4e7b55d/ESP.lua"))() -- The function that takes place when the toggle is pressed
+   -- The variable (Value) is a boolean on whether the toggle is true or false
+   end,
+})
+local Button = MiscTab:CreateButton({
+   Name = "IY (Infinite Yield)",
+   Callback = function()
+   loadstring(game:HttpGetAsync('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))() -- The function that takes place when the button is pressed
+   end,
+})
+local Button = MiscTab:CreateButton({
+   Name = "Chat Bypasser",
+   Callback = function()
+   Rayfield:Notify({
+  	Title = "Credits to fearless for ts",
+  	Content = "And btw it will lag the fuck out of ur device",
+  	Duration = 3,
+  	Image = 4483362458,
+	})
+   loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/fearlessd3v/TEAM-FEARLESS/refs/heads/main/fearless-chat-bypass"))()-- The function that takes place when the button is pressed
+   end,
+})
